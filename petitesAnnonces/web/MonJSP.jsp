@@ -16,7 +16,13 @@
 	<% 
 		String nom= request.getParameter("champTexte");
 		out.print("<p> Vous vous appelez "+ nom);
-	%>
+	
+                String aimer= request.getParameter("chk");
+                out.print("<p> Vous aimez le "+ aimer);
+                
+                String champTextarea= request.getParameter("champTextarea");
+                 out.print("<p> Autre: "+ champTextarea);
+        %>
 	 
 </body>
 </html>
