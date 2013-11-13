@@ -6,13 +6,18 @@
 
 package packageServlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.jdom2.*;
+import org.jdom2.input.SAXBuilder;
 
 /**
  *
@@ -34,6 +39,49 @@ public class ServletAuthentification extends HttpServlet {
     String motDePasse= "loulou";
     String n;
     String m;
+    static org.jdom2.Document document;
+    static Element racine;
+    
+    public static void lireFichier()
+    {
+        SAXBuilder sxb = new SAXBuilder();
+        try
+        {
+           //On crée un nouveau document JDOM avec en argument le fichier XML
+           //Le parsing est terminé ;)
+           document = sxb.build(new File("milf.xml"));
+        }
+        catch(Exception e){}
+
+        //On initialise un nouvel élément racine avec l'élément racine du document.
+        racine = document.getRootElement();
+    }
+    
+    public static boolean connexionUtilisateur(String id, String mdp)
+    {
+            lireFichier();
+            
+            boolean b= false;
+
+            List<Element> listeUtilisateurs= racine.getChildren("utilisateur");
+
+            Iterator<Element> it = listeUtilisateurs.iterator();
+            
+            while(it.hasNext() && !b)
+            {
+                   Element courant = it.next();
+
+                   if(id.equals(courant.getChild("id").getText()))
+                   {
+                            if(mdp.equals(courant.getChild("mdp").getText()))
+                                return true;
+      
+                   }                      
+            }
+
+            return b;
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -46,15 +94,23 @@ public class ServletAuthentification extends HttpServlet {
             out.println("<title>Servlet ServletAuthentification</title>");            
             out.println("</head>");
             out.println("<body>");
-            
+            /* Question 2
             if((n= request.getParameter("nom")) != null && (m= request.getParameter("mdp")) != null)
             {
                 if(login.equals(n) && motDePasse.equals(m))
                     out.println("<h1> Authentification réussie </h1>");
                 else
                     out.println("<h1> Tu t'es gouré pélo !</h1>");
-            }          
-                        
+            }      
+            */    
+                
+            //Question 3
+            if(connexionUtilisateur(request.getParameter("nom"), request.getParameter("mdp")) )
+                out.println("Tu as réussi !");
+            else
+                out.println("Y a une couille dans l'authentification pélo !");
+            
+            
             out.println("</body>");
             out.println("</html>");
         }
