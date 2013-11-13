@@ -47,11 +47,11 @@ public class ServletAuthentification extends HttpServlet {
         SAXBuilder sxb = new SAXBuilder();
         try
         {
-           //On crée un nouveau document JDOM avec en argument le fichier XML
-           //Le parsing est terminé ;)
-           document = sxb.build(new File("milf.xml"));
+           document = sxb.build(new File("D:\\Documents\\GitHub\\petitesAnnonces\\petitesAnnonces\\utilisateurs.xml"));
         }
-        catch(Exception e){}
+        catch(JDOMException | IOException e){
+        
+        System.out.println(e);}
 
         //On initialise un nouvel élément racine avec l'élément racine du document.
         racine = document.getRootElement();
@@ -105,11 +105,10 @@ public class ServletAuthentification extends HttpServlet {
             */    
                 
             //Question 3
-            if(connexionUtilisateur(request.getParameter("nom"), request.getParameter("mdp")) )
+           if(connexionUtilisateur(request.getParameter("nom"), request.getParameter("mdp")))
                 out.println("Tu as réussi !");
             else
                 out.println("Y a une couille dans l'authentification pélo !");
-            
             
             out.println("</body>");
             out.println("</html>");
