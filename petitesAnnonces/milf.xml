@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<utilisateurs>
+  <utilisateur>
+    <id>kamin001</id>
+    <mdp>ben</mdp>
+  </utilisateur>
+  <utilisateur>
+    <id>kamin002</id>
+    <mdp>benj</mdp>
+  </utilisateur>
+  <utilisateur>
+    <id>bride001</id>
+    <mdp>aymeric</mdp>
+  </utilisateur>
+  <utilisateur>
+    <id>bride003</id>
+    <mdp>gayzou10</mdp>
+  </utilisateur>
+  <utilisateur>
+    <id>bride002</id>
+    <mdp>badoolike</mdp>
+  </utilisateur>
+  <utilisateur>
+    <id>toto</id>
+    <mdp>toto</mdp>
+  </utilisateur>
+</utilisateurs>
