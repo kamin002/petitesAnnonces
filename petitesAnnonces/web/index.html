@@ -5,12 +5,19 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Formulaire</title>
+</head>
+<body>
+	<h1>Mon premier formulaire</h1>
+	<form name="formu" method= "GET" action="MonJSP.jsp">
+		<p>Nom: <input type="text" name="champTexte" value="">
+		<p>Vous aimez le: Foot <input type="checkbox" name="chk">
+						  Hand <input type="checkbox" name="chk">
+						  Basket <input type="checkbox" name="chk">
+		<p><textarea name="champTextarea"></textarea>
+		<p><input type="Submit" name="Envoyer" value="Envoyer">
+	</form>
+</body>
 </html>
